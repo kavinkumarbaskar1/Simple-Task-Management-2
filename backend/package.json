@@ -1,0 +1,17 @@
+{
+  "name": "simple-task-manager-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Express API foundation for the Simple Task Manager demo.",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

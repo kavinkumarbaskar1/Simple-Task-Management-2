@@ -40,7 +40,23 @@ attachments, or production hosting configuration.
    - `PGPASSWORD`
    - `PORT`
 
-4. Start the backend API:
+4. Initialize the local task schema:
+
+   ```sh
+   npm run db:migrate
+   ```
+
+   The migration command uses `psql`. Set `DATABASE_URL` in your shell before
+   running it, or use the standard PostgreSQL environment variables such as
+   `PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER`, and `PGPASSWORD`.
+
+   Example:
+
+   ```sh
+   DATABASE_URL=postgres://postgres:postgres@localhost:5432/simple_task_manager npm run db:migrate
+   ```
+
+5. Start the backend API:
 
    ```sh
    npm run dev
@@ -88,6 +104,23 @@ cd frontend
 npm run build
 npm run preview
 ```
+
+## Local Database Reset
+
+To rebuild the local PostgreSQL task schema from scratch for demo review:
+
+```sh
+cd backend
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/simple_task_manager npm run db:reset
+```
+
+Warning: `npm run db:reset` drops the local `tasks` table before applying the
+migration again. This can permanently delete local demo task data in that
+database.
+
+If you prefer to use individual PostgreSQL environment variables instead of
+`DATABASE_URL`, export `PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER`, and
+`PGPASSWORD` before running `npm run db:migrate` or `npm run db:reset`.
 
 ## Configuration Notes
 

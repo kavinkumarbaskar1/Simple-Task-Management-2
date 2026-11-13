@@ -5,11 +5,14 @@
   "description": "Express API foundation for the Simple Task Manager demo.",
   "main": "src/server.js",
   "scripts": {
+    "db:migrate": "psql ${DATABASE_URL:-} -f migrations/001_create_tasks.sql",
+    "db:reset": "psql ${DATABASE_URL:-} -c \"DROP TABLE IF EXISTS tasks;\" && npm run db:migrate",
     "dev": "node --watch src/server.js",
     "start": "node src/server.js"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "pg": "^8.23.1"
   },
   "engines": {
     "node": ">=18"
